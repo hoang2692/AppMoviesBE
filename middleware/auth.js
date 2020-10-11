@@ -3,7 +3,7 @@ const Customer = require("../modals/customer");
 
 const auth = async (req,res,next)=> {
     const token = req.header('Authorization').replace('Bearer ', '')
-    const data = jwt.verify(token,process.env.JWT_KEY)
+    const data = jwt.verify(token,HuongVNQ)
     try
     {
         const customer = await Customer.findOne({_id:data._id,'tokens.token': token})
