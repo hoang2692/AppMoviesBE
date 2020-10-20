@@ -5,8 +5,7 @@ try
     const MoviesRecommendController = {
         getAll: async (req,res) =>{
             var movie = await moviesRecommend.find()
-            res.json({
-                data: movie})
+            res.json(movie)
         },
         // getOne: async (req,res) =>{
         //     var profileProducts = await Product.findById({_id: req.params.id})
