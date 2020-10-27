@@ -9,14 +9,19 @@ try{
             res.status(201).send({customer, token})
         },
         login: async (req,res) =>{
-            const {email,password} = req.body
-            const customer = await Customer.findByCredentials(email,password)
-            if(!customer)
-            {
-                return res.send({error: "Login faild! Check authentication"})
+            try{
+                const {email,password} = req.body
+                const customer = await Customer.findByCredentials(email,password)
+                if(!customer)
+                {
+                    return res.send({error: "Login faild! Check authentication"})
+                }
+                const token = await customer.generateAuthToken()
+                res.send({customer,token})
             }
-            const token = await customer.generateAuthToken()
-            res.send({customer,token})
+            catch(erro){
+                return res.status(401).send({error: "Login faild! Check authentication"})
+            }
         },
         logout: async (req,res) =>{
             try
