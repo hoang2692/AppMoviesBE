@@ -3,10 +3,16 @@ const Customer = require('../../modals/customer')
 try{
     const CustomerControler = {
         create: async (req,res) =>{
-            const customer = new Customer(req.body)
-            await customer.save()
-            const token = await customer.generateAuthToken()
-            res.status(201).send({customer, token})
+            try
+            {
+                const customer = new Customer(req.body)
+                await customer.save()
+                const token = await customer.generateAuthToken()
+                res.status(201).send({customer, token})
+            }
+            catch(erro){
+                res.status(400).send("unSuccess")
+            }
         },
         login: async (req,res) =>{
             try{
