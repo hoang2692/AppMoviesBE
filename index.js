@@ -2,7 +2,12 @@ const express = require('express')
 var bodyParser = require('body-parser')
 var mongoose = require('mongoose')
 
-mongoose.connect('mongodb+srv://admin:123@cluster0.kmcmn.gcp.mongodb.net/moviesApp?retryWrites=true&w=majority',{ useNewUrlParser: true,useUnifiedTopology: true,useCreateIndex: true }).then(db => console.log("Connect Success"))
+mongoose.connect(
+    'mongodb+srv://admin:123@cluster0.kmcmn.gcp.mongodb.net/moviesApp?retryWrites=true&w=majority',{
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true })
+        .then(db => console.log("Connect Success"));
 
 const newapp = express();
 const port =process.env.PORT || 3000;

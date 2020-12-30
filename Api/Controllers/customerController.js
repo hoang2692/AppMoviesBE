@@ -58,6 +58,16 @@ try{
         },
         getOne: async(req,res) =>{
             res.send(req.customer)
+        },
+        changePass: async(req,res) => {
+            const pass = req.body.password;
+            var password = bcrypt.hashSync(pass, 8)
+            console.log({password});
+            console.log(req.body);
+            await Customer.findByIdAndUpdate({_id: req.params.id},{password})
+            res.json({
+                Messenger: "Update Success"
+            })
         }
     }
     module.exports = CustomerControler;
