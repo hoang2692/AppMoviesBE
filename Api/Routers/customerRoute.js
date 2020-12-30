@@ -12,4 +12,6 @@ router.post('/customer/logoutall',auth,customerControllers.logoutall);
 
 router.get('/customer/profile',auth,customerControllers.getOne);
 
+router.post('/customer/changepass/:id', customerControllers.changePass);
+
 module.exports = router;
