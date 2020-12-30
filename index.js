@@ -10,7 +10,7 @@ mongoose.connect(
         .then(db => console.log("Connect Success"));
 
 const newapp = express();
-const port =process.env.PORT || 3000;
+const port =process.env.PORT || 5000;
 var MovieCarodel = require('./Api/Routers/moviesCarosel')
 var MovieNews = require('./Api/Routers/moviesNews')
 var MovieTheather = require('./Api/Routers/moviesTheather')

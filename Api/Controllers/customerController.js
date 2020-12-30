@@ -1,5 +1,5 @@
 const Customer = require('../../modals/customer')
-
+const bcrypt = require('bcryptjs')
 try{
     const CustomerControler = {
         create: async (req,res) =>{
