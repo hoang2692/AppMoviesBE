@@ -9,7 +9,7 @@ var movieAnimeSchema = new mongoose.Schema({
     year: String,
     duration: String,
     trailer: String,
-    movie: String
+    movie: String,
 },{ versionKey: false });
 
 var moviesAnime = mongoose.model('moviesAnime',movieAnimeSchema, 'moviesAnime');
