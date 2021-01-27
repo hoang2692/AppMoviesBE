@@ -23,6 +23,9 @@ const UserSchema = new mongoose.Schema({
             }
         }
     },
+    position:{
+        type: String,
+    },
     password:
     {
         type: String,
@@ -61,7 +64,7 @@ UserSchema.methods.generateAuthToken = async function(){
 }
 
 UserSchema.statics.findByCredentials = async (email,password) =>{
-    const user = await Customer.findOne({email}).populate('favoriteMovie')
+    const user = await Customer.findOne({email})
     if(!user)
     {
         throw new Error({error:"Invalid login credentials"})

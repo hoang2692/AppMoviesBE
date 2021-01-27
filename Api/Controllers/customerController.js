@@ -2,6 +2,10 @@ const Customer = require('../../modals/customer')
 const bcrypt = require('bcryptjs')
 try{
     const CustomerControler = {
+        getAll: async (req,res) =>{
+            const customer = await Customer.find()
+            res.json(customer)
+        },
         create: async (req,res) =>{
             try
             {
@@ -57,7 +61,8 @@ try{
             }
         },
         getOne: async(req,res) =>{
-            res.send(req.customer)
+            const customer = await Customer.findById({_id: req.params.id})
+            res.send(customer)
         },
         changePass: async(req,res) => {
             const pass = req.body.password;
@@ -68,7 +73,24 @@ try{
             res.json({
                 Messenger: "Update Success"
             })
-        }
+        },
+        delete: async (req,res) =>{
+            var deleteProduct = await Customer.findByIdAndDelete({_id: req.params.id})
+            res.json(deleteProduct)
+        },
+        deleteMovie: async (req,res) =>{
+            var customer = await Customer.findById({_id: req.params.idCustomer})
+            if(customer)
+            {
+                const index = customer.favoriteMovie.indexOf(req.params.idMovie)
+                if(index > -1)
+                {
+                    customer.favoriteMovie.splice(index,1)
+                }
+                customer.save()
+            }
+            res.json(customer)
+        },
     }
     module.exports = CustomerControler;
 }
