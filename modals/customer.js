@@ -64,7 +64,7 @@ UserSchema.methods.generateAuthToken = async function(){
 }
 
 UserSchema.statics.findByCredentials = async (email,password) =>{
-    const user = await Customer.findOne({email})
+    const user = await Customer.findOne({email}).populate('favoriteMovie')
     if(!user)
     {
         throw new Error({error:"Invalid login credentials"})
