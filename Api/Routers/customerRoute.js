@@ -9,7 +9,7 @@ router.get('/customer/profile/:id',customerControllers.getOne);
 
 router.post('/customer/create',customerControllers.create)
 
-router.put('/customer/dangnhap',customerControllers.login);
+router.post('/customer/dangnhap',customerControllers.login);
 
 router.post('/customer/logout',auth,customerControllers.logout);
 
